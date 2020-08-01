@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import getCryptoDataFromAPI from '../actions';
 
 class CryptoTable extends Component {
@@ -44,5 +45,11 @@ const mapStateToProps = ({ data, isFetching, error }) => ({ data, isFetching, er
 const mapDispatchToProps = (dispatch) => (
   { fetchCryptoData: () => dispatch(getCryptoDataFromAPI()) }
 );
+
+CryptoTable.propTypes = {
+  data: PropTypes.instanceOf(Object).isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  fetchCryptoData: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CryptoTable);
