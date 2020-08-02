@@ -47,6 +47,8 @@ plugins:
         enabled: false
       box-model:
           enabled: false
+      position:
+          enabled: false
   eslint:
     enabled: true
     config:

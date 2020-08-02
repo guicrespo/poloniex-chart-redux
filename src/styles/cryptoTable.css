@@ -1,8 +1,8 @@
 .rtable {
   border-spacing: 0;
   display: inline-block;
-  overflow-x: auto;
   max-width: 100%;
+  overflow-x: auto;
   vertical-align: top;
   white-space: nowrap;
 }
@@ -13,8 +13,7 @@
   text-align: left;
 }
 
-.rtable th,
-.rtable td {
+.rtable th , .rtable td {
   border: 1px solid #d9d7ce;
   padding: 6px 12px;
 }
@@ -30,8 +29,7 @@ table td:first-child {
   background-color: rgb(78, 78, 78);
 }
 
-table td:first-child,
-table th:first-child {
+table td:first-child , table th:first-child {
   left: 0;
-  position: sticky;
+  position: absolute;
 }

@@ -11,6 +11,43 @@ class CryptoTable extends Component {
     fetchCryptoData();
   }
 
+  static renderTableHead(data) {
+    return (
+      <thead>
+        <tr>
+          <th>CryptoCoin</th>
+          {
+            Object.values(data).map((value) => (
+              Object.keys(value).map((key) => (
+                !['id', 'isFrozen'].includes(key)
+                && <th key={key}>{key}</th>
+              ))
+            ))[0]
+          }
+        </tr>
+      </thead>
+    );
+  }
+
+  static renderTableBody(data) {
+    return (
+      <tbody>
+        {Object.entries(data).map(([key, value]) => (
+          key.startsWith('USDT')
+          && (
+            <tr>
+              <td key={key}>{key.substring(5)}</td>
+              {Object.entries(value).map(([elKey, elValue]) => (
+                !['id', 'isFrozen'].includes(elKey)
+                && <td>{elValue}</td>
+              ))}
+            </tr>
+          )
+        ))}
+      </tbody>
+    );
+  }
+
   render() {
     const { data, isFetching, error } = this.props;
 
@@ -20,33 +57,8 @@ class CryptoTable extends Component {
 
     return (
       <table className="rtable">
-        <thead>
-          <tr>
-            <th>CryptoCoin</th>
-            {
-              Object.values(data).map((value) => (
-                Object.keys(value).map((key) => (
-                  !['id', 'isFrozen'].includes(key)
-                  && <th key={key}>{key}</th>
-                ))
-              ))[0]
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(data).map(([key, value]) => (
-            key.startsWith('USDT')
-            && (
-              <tr>
-                <td key={key}>{key.substring(5)}</td>
-                {Object.entries(value).map(([elKey, elValue]) => (
-                  !['id', 'isFrozen'].includes(elKey)
-                  && <td>{elValue}</td>
-                ))}
-              </tr>
-            )
-          ))}
-        </tbody>
+        {CryptoTable.renderTableHead(data)}
+        {CryptoTable.renderTableBody(data)}
       </table>
     );
   }
