@@ -38,17 +38,6 @@ exclude_patterns:
   - "**/libs/*.js"
   - "cypress/**/*"
 plugins:
-  csslint:
-    enabled: true
-    checks:
-      box-sizing:
-        enabled: false
-      fallback-colors:
-        enabled: false
-      box-model:
-          enabled: false
-      position:
-          enabled: false
   eslint:
     enabled: true
     config:

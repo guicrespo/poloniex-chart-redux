@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import getCryptoDataFromAPI from '../actions';
 import '../styles/cryptoTable.css';
 
 class CryptoTable extends Component {
-  componentDidMount() {
-    const { fetchCryptoData } = this.props;
-
-    fetchCryptoData();
-  }
-
   static renderTableHead(data) {
     return (
       <thead>
@@ -36,7 +31,7 @@ class CryptoTable extends Component {
           key.startsWith('USDT')
           && (
             <tr>
-              <td key={key}>{key.substring(5)}</td>
+              <td key={key}><Link to={`/${key.substring(5)}`}>{key.substring(5)}</Link></td>
               {Object.entries(value).map(([elKey, elValue]) => (
                 !['id', 'isFrozen'].includes(elKey)
                 && <td>{elValue}</td>
@@ -46,6 +41,12 @@ class CryptoTable extends Component {
         ))}
       </tbody>
     );
+  }
+
+  componentDidMount() {
+    const { fetchCryptoData } = this.props;
+
+    fetchCryptoData();
   }
 
   render() {
