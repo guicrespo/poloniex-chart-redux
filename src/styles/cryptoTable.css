@@ -31,5 +31,5 @@ table td:first-child {
 
 table td:first-child , table th:first-child {
   left: 0;
-  position: absolute;
+  position: sticky;
 }
