@@ -22,7 +22,15 @@ const getCryptoDataFromAPI = () => async (dispatch) => {
   dispatch(requestPoloniexAPI());
 
   return fetchCryptoData()
-    .then(({ data }) => dispatch(receivePoloniexAPISuccess(data)))
+    .then(({ data }) => {
+      const filteredDataUSDT = Object.entries(data)
+        .filter(([key, _value]) => key.startsWith('USDT'))
+        .reduce((acc, cur) => {
+          acc[cur[0]] = cur[1];
+          return acc;
+        }, []);
+      dispatch(receivePoloniexAPISuccess(filteredDataUSDT));
+    })
     .catch((error) => dispatch(receivePoloniexAPIFailure(error)));
 };
 

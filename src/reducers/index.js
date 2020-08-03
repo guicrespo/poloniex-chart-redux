@@ -9,7 +9,7 @@ const cryptoData = (state = INITIAL_STATE, action) => {
     case RECEIVE_POLONIEX_API_SUCCESS:
       return { ...state, isFetching: false, data: action.data };
     case RECEIVE_POLONIEX_API_FAILURE:
-      return { ...state, isFetching: false, error: action.error };
+      return { ...state, isFetching: false, error: action.error.toString() };
     default: return state;
   }
 };
