@@ -8,10 +8,10 @@
 }
 
 body {
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 1rem;
+  line-height: 1.2rem;
   margin: 0;
-  padding: 25px;
+  padding: 1rem;
 }
 
 a {
@@ -27,6 +27,8 @@ td , th {
   border-bottom: 1px solid #e5e5e5;
   padding: 1rem;
   text-align: center;
+  min-width: 8rem;
+  max-width: 8rem;
 }
 
 thead th {
@@ -76,6 +78,7 @@ button:disabled {
 }
 
 table {
+  border-radius: 1rem 1rem 0 0;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
 }

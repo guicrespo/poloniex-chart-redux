@@ -86,32 +86,44 @@ class CryptoTable extends Component {
     );
   }
 
+  renderPageButtons() {
+    const { pageNumber, previousButtonEnabled, nextButtonEnabled } = this.state;
+    return (
+      <section className="table-buttons">
+        <button
+          type="button"
+          onClick={this.handlePreviousPage}
+          disabled={!previousButtonEnabled}
+        >
+          ❮
+        </button>
+        <p className="page-number">{pageNumber}</p>
+        <button
+          type="button"
+          onClick={this.handleNextPage}
+          disabled={!nextButtonEnabled}
+        >
+          ❯
+        </button>
+      </section>
+    );
+  }
+
   render() {
     const { data, filteredData, isFetching, error } = this.props;
-    const { pageNumber, previousButtonEnabled, nextButtonEnabled } = this.state;
     const cryptoData = Object.getOwnPropertyNames(filteredData).length > 0 ? filteredData : data;
 
     if (isFetching) return <div className="spinner" data-testid="loading" />;
     if (error) return <p>Erro na conexão com a API. Verifique sua conexão.</p>;
     return (
       <Fragment>
-        <section className="filters">
-          <SearchInput />
-        </section>
+        <SearchInput />
         <section className="main-table">
           <table className="rtable">
             {CryptoTable.renderTableHead(cryptoData)}
             {this.renderTableBody(cryptoData)}
           </table>
-          <section className="table-buttons">
-            <button type="button" onClick={this.handlePreviousPage} disabled={!previousButtonEnabled}>
-              ❮
-            </button>
-            <p className="page-number">{pageNumber}</p>
-            <button type="button" onClick={this.handleNextPage} disabled={!nextButtonEnabled}>
-              ❯
-            </button>
-          </section>
+          {this.renderPageButtons()}
         </section>
       </Fragment>
     );
