@@ -5,7 +5,11 @@ class PageHeader extends Component {
   render() {
     return (
       <header className="header">
-        <img src={coinIcon} className="coin-icon" alt="ícone com três moedas sem preenchimento empilhadas" />
+        <img
+          src={coinIcon}
+          className="coin-icon"
+          alt="ícone com três moedas sem preenchimento empilhadas"
+        />
         <a href="/" className="header-link">
           <h1 className="header-title">
             Crypto

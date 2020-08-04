@@ -48,7 +48,7 @@ class CryptoTable extends Component {
           data-tooltip="USDT é sigla do USDT Tether, um token digital estável e atrelado
               ao dólar americano (USD), ou seja, 1 USDT é equivalente a 1 USD."
         >
-          O que é USDT?
+          - O que é USDT?
         </span>
       </p>
     );
