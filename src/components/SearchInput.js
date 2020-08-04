@@ -12,6 +12,7 @@ class SearchInput extends Component {
           type="text"
           onChange={({ target: { value } }) => filterCoinsByName(data, value.toUpperCase())}
           placeholder="Digite um nome"
+          className="search-input"
         />
       </section>
     );

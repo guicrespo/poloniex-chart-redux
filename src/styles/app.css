@@ -1,5 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+  margin: 0;
+  padding: 1rem;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .header-title {
   font-family: Ubuntu, sans-serif;
   font-size: 3rem;
   text-align: center;
+}
+
+.coin-icon {
+  color: rgb(0, 61, 131);
+  height: 4rem;
+  margin-right: 1rem;
+  width: 4rem;
 }

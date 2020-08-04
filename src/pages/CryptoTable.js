@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -116,16 +116,26 @@ class CryptoTable extends Component {
     if (isFetching) return <div className="spinner" data-testid="loading" />;
     if (error) return <p>Erro na conexão com a API. Verifique sua conexão.</p>;
     return (
-      <Fragment>
-        <SearchInput />
-        <section className="main-table">
+      <section className="main-table">
+        <section>
+          <SearchInput />
+          <caption className="table-caption">
+            Os valores exibidos estão em USDT
+            <span
+              className="table-caption tooltip tooltip-top"
+              data-tooltip="USDT é sigla do USDT Tether, um token digital estável e atrelado
+              ao dólar americano (USD), ou seja, 1 USDT é equivalente a 1 USD."
+            >
+              O que é USDT?
+            </span>
+          </caption>
           <table className="rtable">
             {CryptoTable.renderTableHead(cryptoData)}
             {this.renderTableBody(cryptoData)}
           </table>
-          {this.renderPageButtons()}
         </section>
-      </Fragment>
+        {this.renderPageButtons()}
+      </section>
     );
   }
 }
