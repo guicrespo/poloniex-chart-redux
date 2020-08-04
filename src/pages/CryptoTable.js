@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -92,11 +92,9 @@ class CryptoTable extends Component {
     const cryptoData = Object.getOwnPropertyNames(filteredData).length > 0 ? filteredData : data;
 
     if (isFetching) return <div className="spinner" data-testid="loading" />;
-
     if (error) return <p>Erro na conexão com a API. Verifique sua conexão.</p>;
-
     return (
-      <>
+      <Fragment>
         <section className="filters">
           <SearchInput />
         </section>
@@ -106,24 +104,16 @@ class CryptoTable extends Component {
             {this.renderTableBody(cryptoData)}
           </table>
           <section className="table-buttons">
-            <button
-              type="button"
-              onClick={this.handlePreviousPage}
-              disabled={!previousButtonEnabled}
-            >
+            <button type="button" onClick={this.handlePreviousPage} disabled={!previousButtonEnabled}>
               ❮
             </button>
             <p className="page-number">{pageNumber}</p>
-            <button
-              type="button"
-              onClick={this.handleNextPage}
-              disabled={!nextButtonEnabled}
-            >
+            <button type="button" onClick={this.handleNextPage} disabled={!nextButtonEnabled}>
               ❯
             </button>
           </section>
         </section>
-      </>
+      </Fragment>
     );
   }
 }

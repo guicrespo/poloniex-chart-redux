@@ -18,6 +18,30 @@ a {
   color: black;
 }
 
+th {
+  color: black;
+}
+
+td , th {
+  background-color: white;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 1rem;
+  text-align: center;
+}
+
+thead th {
+  background-color: rgb(0, 61, 131);
+  color: white;
+}
+
+thead th:first-child {
+  border-radius: 1rem 0 0;
+}
+
+thead th:last-child {
+  border-radius: 0 1rem 0 0;
+}
+
 table td:first-child {
   border-right: 1px solid black;
 }
@@ -26,7 +50,6 @@ table td:first-child , table th:first-child {
   left: 0;
   position: sticky;
 }
-
 
 .table-buttons {
   display: flex;
@@ -53,19 +76,8 @@ button:disabled {
 }
 
 table {
-  box-shadow: 0 3px 8px rgba(0,0,0,.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
-}
-
-td , th {
-  background-color: white;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 1rem;
-  text-align: center;
-}
-
-th {
-  color: black;
 }
 
 .page-number {
@@ -75,19 +87,6 @@ th {
 
 .table-head-row {
   border-radius: 5rem;
-}
-
-thead th {
-  background-color: rgb(0, 61, 131);
-  color: white;
-}
-
-thead th:first-child {
-  border-radius: 1rem 0 0 0;
-}
-
-thead th:last-child {
-  border-radius: 0 1rem 0 0;
 }
 
 .spinner {
