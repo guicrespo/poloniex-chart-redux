@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import getCryptoDataFromAPI from '../actions';
+import { getCryptoDataFromAPI } from '../actions';
 import '../styles/cryptoTable.css';
+import SearchInput from '../components/SearchInput';
 
 class CryptoTable extends Component {
   constructor(props) {
@@ -23,13 +24,13 @@ class CryptoTable extends Component {
   static renderTableHead(data) {
     return (
       <thead>
-        <tr>
-          <th>CryptoCoin</th>
+        <tr className="table-head-row">
+          <th className="table-head-cell">Criptomoedas</th>
           {
             Object.values(data).map((value) => (
               Object.keys(value).map((key) => (
                 !['id', 'isFrozen'].includes(key)
-                && <th key={key}>{key}</th>
+                && <th key={key} className="table-head-cell">{key}</th>
               ))
             ))[0]
           }
@@ -73,7 +74,7 @@ class CryptoTable extends Component {
         {Object.entries(data).slice(page, page + 10).map(([key, value]) => (
           <tr>
             <td key={key}>
-              <Link to={`/${key.substring(5).toLowerCase()}`}>{key.substring(5)}</Link>
+              <Link to={`/${key.toLowerCase()}`}>{key}</Link>
             </td>
             {Object.entries(value).map(([elKey, elValue]) => (
               !['id', 'isFrozen'].includes(elKey)
@@ -86,42 +87,50 @@ class CryptoTable extends Component {
   }
 
   render() {
-    const { data, isFetching, error } = this.props;
+    const { data, filteredData, isFetching, error } = this.props;
     const { pageNumber, previousButtonEnabled, nextButtonEnabled } = this.state;
+    const cryptoData = Object.getOwnPropertyNames(filteredData).length > 0 ? filteredData : data;
 
-    if (isFetching) return <p>Carregando...</p>;
+    if (isFetching) return <div className="spinner" data-testid="loading" />;
 
     if (error) return <p>Erro na conexão com a API. Verifique sua conexão.</p>;
 
     return (
-      <section className="main-table">
-        <table className="rtable">
-          {CryptoTable.renderTableHead(data)}
-          {this.renderTableBody(data)}
-        </table>
-        <section className="table-buttons">
-          <button
-            type="button"
-            onClick={this.handlePreviousPage}
-            disabled={!previousButtonEnabled}
-          >
-            Anterior
-          </button>
-          <p>{pageNumber}</p>
-          <button
-            type="button"
-            onClick={this.handleNextPage}
-            disabled={!nextButtonEnabled}
-          >
-            Próxima
-          </button>
+      <>
+        <section className="filters">
+          <SearchInput />
         </section>
-      </section>
+        <section className="main-table">
+          <table className="rtable">
+            {CryptoTable.renderTableHead(cryptoData)}
+            {this.renderTableBody(cryptoData)}
+          </table>
+          <section className="table-buttons">
+            <button
+              type="button"
+              onClick={this.handlePreviousPage}
+              disabled={!previousButtonEnabled}
+            >
+              ❮
+            </button>
+            <p className="page-number">{pageNumber}</p>
+            <button
+              type="button"
+              onClick={this.handleNextPage}
+              disabled={!nextButtonEnabled}
+            >
+              ❯
+            </button>
+          </section>
+        </section>
+      </>
     );
   }
 }
 
-const mapStateToProps = ({ data, isFetching, error }) => ({ data, isFetching, error });
+const mapStateToProps = ({ data, filteredData, isFetching, error }) => (
+  { data, filteredData, isFetching, error }
+);
 
 const mapDispatchToProps = (dispatch) => (
   { fetchCryptoData: () => dispatch(getCryptoDataFromAPI()) }
@@ -129,6 +138,7 @@ const mapDispatchToProps = (dispatch) => (
 
 CryptoTable.propTypes = {
   data: PropTypes.instanceOf(Object).isRequired,
+  filteredData: PropTypes.instanceOf(Object).isRequired,
   isFetching: PropTypes.bool.isRequired,
   fetchCryptoData: PropTypes.func.isRequired,
   error: PropTypes.string,
