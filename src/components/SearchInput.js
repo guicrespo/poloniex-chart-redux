@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { filterByName } from '../actions';
@@ -7,14 +7,14 @@ class SearchInput extends Component {
   render() {
     const { data, filterCoinsByName } = this.props;
     return (
-      <section className="filters">
+      <Fragment>
         <input
           type="text"
           onChange={({ target: { value } }) => filterCoinsByName(data, value.toUpperCase())}
           placeholder="Digite um nome"
           className="search-input"
         />
-      </section>
+      </Fragment>
     );
   }
 }

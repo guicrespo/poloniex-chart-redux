@@ -39,6 +39,21 @@ class CryptoTable extends Component {
     );
   }
 
+  static renderTableCaption() {
+    return (
+      <p className="table-caption">
+        Os valores exibidos estão em USDT
+        <span
+          className="table-caption tooltip tooltip-top"
+          data-tooltip="USDT é sigla do USDT Tether, um token digital estável e atrelado
+              ao dólar americano (USD), ou seja, 1 USDT é equivalente a 1 USD."
+        >
+          O que é USDT?
+        </span>
+      </p>
+    );
+  }
+
   componentDidMount() {
     const { fetchCryptoData } = this.props;
 
@@ -114,28 +129,23 @@ class CryptoTable extends Component {
     const cryptoData = Object.getOwnPropertyNames(filteredData).length > 0 ? filteredData : data;
 
     if (isFetching) return <div className="spinner" data-testid="loading" />;
+
     if (error) return <p>Erro na conexão com a API. Verifique sua conexão.</p>;
     return (
       <section className="main-table">
-        <section>
-          <SearchInput />
-          <caption className="table-caption">
-            Os valores exibidos estão em USDT
-            <span
-              className="table-caption tooltip tooltip-top"
-              data-tooltip="USDT é sigla do USDT Tether, um token digital estável e atrelado
-              ao dólar americano (USD), ou seja, 1 USDT é equivalente a 1 USD."
-            >
-              O que é USDT?
-            </span>
-          </caption>
-          <table className="rtable">
-            {CryptoTable.renderTableHead(cryptoData)}
-            {this.renderTableBody(cryptoData)}
-          </table>
-        </section>
+        <SearchInput />
+        {CryptoTable.renderTableCaption()}
+        {!Object.keys(cryptoData).length
+          ? <p>Moeda não encontrada. Tente novamente.</p>
+          : (
+            <table className="rtable">
+              {CryptoTable.renderTableHead(cryptoData)}
+              {this.renderTableBody(cryptoData)}
+            </table>
+          )}
         {this.renderPageButtons()}
       </section>
+
     );
   }
 }

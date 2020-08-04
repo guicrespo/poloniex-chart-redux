@@ -8,10 +8,6 @@
   white-space: nowrap;
 }
 
-a {
-  color: black;
-}
-
 th {
   color: black;
 }
@@ -37,6 +33,17 @@ thead th:first-child {
 
 thead th:last-child {
   border-radius: 0 1rem 0 0;
+}
+
+tbody tr a {
+  color: black;
+  font-weight: bold;
+}
+
+tbody tr a:hover {
+  color: rgb(0, 61, 131);
+  font-weight: bold;
+  text-decoration: none;
 }
 
 table td:first-child {
@@ -74,7 +81,7 @@ button:disabled {
 
 table {
   border-radius: 1rem 1rem 0 0;
-  box-shadow: 0 10px 100px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
 }
 
@@ -88,8 +95,10 @@ table {
 }
 
 .search-input {
+  background-color: rgb(247, 247, 247);
   border: none;
   border-bottom: 2px solid rgb(0, 61, 131);
+  font-size: 1rem;
   margin-left: 1rem;
   margin-top: 3rem;
 }
@@ -98,20 +107,23 @@ table {
   color: rgb(78, 78, 78);
   font-size: small;
   font-style: italic;
-  margin: 1rem 0 0.5rem 1rem;
+  margin: 1rem 0 0.5rem;
   width: fit-content;
 }
 
 .tooltip {
   color: rgb(0, 61, 131);
+  margin-left: 0.5rem;
   text-decoration: none;
 }
  
-.tooltip:hover {
+.tooltip:hover, .tooltip:focus, .tooltip:active {
   position: relative;
 }
 
-.tooltip-top[data-tooltip]:hover:after {
+.tooltip-top[data-tooltip]:hover:after, 
+.tooltip-top[data-tooltip]:focus:after, 
+.tooltip-top[data-tooltip]:active:after {
   background-color: rgb(0, 87, 185);
   border-radius: 5px;
   bottom: 100%;
@@ -120,7 +132,7 @@ table {
   left: 0;
   padding: 4px 8px;
   position: absolute;
-  white-space: nowrap;
+  width: 15rem;
 }
 
 .spinner {
