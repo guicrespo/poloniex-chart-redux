@@ -59,7 +59,7 @@ table td:first-child , table th:first-child {
   display: flex;
 }
 
-button {
+.table-button {
   background: none;
   border: none;
   color: rgb(0, 61, 131);
@@ -69,7 +69,7 @@ button {
   margin: 1rem;
 }
 
-button:disabled {
+.table-button:disabled {
   color: rgba(0, 55, 117, 0.452);
 }
 
@@ -122,7 +122,7 @@ table {
   position: relative;
 }
 
-.tooltip-top[ data-tooltip ]:hover:after , .tooltip-top[ data-tooltip ]:focus:after , .tooltip-top[ data-tooltip ]:active:after {
+.tooltip-top[ data-tooltip ]:hover:after , .tooltip-top[ data-tooltip ]:active:after {
   background-color: rgb(0, 87, 185);
   border-radius: 5px;
   bottom: 100%;

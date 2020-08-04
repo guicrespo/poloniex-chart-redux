@@ -108,6 +108,7 @@ class CryptoTable extends Component {
         <button
           type="button"
           onClick={this.handlePreviousPage}
+          className="table-button"
           disabled={!previousButtonEnabled}
         >
           ❮
@@ -116,6 +117,7 @@ class CryptoTable extends Component {
         <button
           type="button"
           onClick={this.handleNextPage}
+          className="table-button"
           disabled={!nextButtonEnabled}
         >
           ❯
