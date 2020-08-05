@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getCryptoDataFromAPI } from '../actions';
+import { getCryptoDataFromAPI, sortContent } from '../actions';
 import '../styles/cryptoTable.css';
 import SearchInput from '../components/SearchInput';
 import { formatTableHead, formatTableBody } from '../utils';
@@ -14,29 +14,13 @@ class CryptoTable extends Component {
     this.state = {
       page: 0,
       pageNumber: 1,
+      field: 'last',
+      order: 'DESC',
       previousButtonEnabled: false,
     };
 
     this.handleNextPage = this.handleNextPage.bind(this);
     this.handlePreviousPage = this.handlePreviousPage.bind(this);
-  }
-
-  static renderTableHead(data) {
-    return (
-      <thead>
-        <tr className="table-head-row">
-          <th className="table-head-cell">Criptomoedas</th>
-          {
-            Object.values(data).map((value) => (
-              Object.keys(value).map((key) => (
-                !['id', 'isFrozen', 'quoteVolume'].includes(key)
-                && <th key={key} className="table-head-cell">{formatTableHead(key)}</th>
-              ))
-            ))[0]
-          }
-        </tr>
-      </thead>
-    );
   }
 
   static renderTableCaption() {
@@ -56,7 +40,6 @@ class CryptoTable extends Component {
 
   componentDidMount() {
     const { fetchCryptoData } = this.props;
-
     fetchCryptoData();
   }
 
@@ -66,6 +49,15 @@ class CryptoTable extends Component {
       this.setState({ page: 0, pageNumber: 1, previousButtonEnabled: false });
     }
     return true;
+  }
+
+  componentDidUpdate(_prevProps, prevState) {
+    const { sortData, data, filteredData } = this.props;
+    const { field, order } = this.state;
+    const dataToSort = Object.getOwnPropertyNames(filteredData).length ? filteredData : data;
+    if (prevState.field !== field || prevState.order !== order) {
+      sortData(dataToSort, field, order);
+    }
   }
 
   handlePreviousPage() {
@@ -83,6 +75,34 @@ class CryptoTable extends Component {
       pageNumber: pageNumber + 1,
       page: page + 10,
     });
+  }
+
+  renderTableHead(data) {
+    const { field, order } = this.state;
+    const indicator = order === 'DESC' ? '▼' : '▲';
+    return (
+      <thead>
+        <tr className="table-head-row">
+          <th className="table-head-cell">Criptomoedas</th>
+          {
+            Object.values(data).map((value) => (
+              Object.keys(value).map((key) => (
+                !['id', 'isFrozen', 'quoteVolume'].includes(key)
+                && (
+                  <th
+                    key={key}
+                    className="table-head-cell"
+                    onClick={() => this.setState({ field: key, order: order === 'ASC' ? 'DESC' : 'ASC' })}
+                  >
+                    {`${formatTableHead(key)} ${key === field ? indicator : ''}`}
+                  </th>
+                )
+              ))
+            ))[0]
+          }
+        </tr>
+      </thead>
+    );
   }
 
   renderTableBody(data) {
@@ -144,13 +164,12 @@ class CryptoTable extends Component {
           ? <p>Moeda não encontrada. Tente novamente.</p>
           : (
             <table className="rtable">
-              {CryptoTable.renderTableHead(cryptoData)}
+              {this.renderTableHead(cryptoData)}
               {this.renderTableBody(cryptoData)}
             </table>
           )}
         {this.renderPageButtons(cryptoData)}
       </section>
-
     );
   }
 }
@@ -159,9 +178,10 @@ const mapStateToProps = ({ data, filteredData, isFetching, filters: { name }, er
   { data, filteredData, isFetching, name, error }
 );
 
-const mapDispatchToProps = (dispatch) => (
-  { fetchCryptoData: () => dispatch(getCryptoDataFromAPI()) }
-);
+const mapDispatchToProps = (dispatch) => ({
+  fetchCryptoData: () => dispatch(getCryptoDataFromAPI()),
+  sortData: (data, field, order) => dispatch(sortContent(data, field, order)),
+});
 
 CryptoTable.propTypes = {
   data: PropTypes.instanceOf(Object).isRequired,
@@ -170,6 +190,7 @@ CryptoTable.propTypes = {
   fetchCryptoData: PropTypes.func.isRequired,
   error: PropTypes.string,
   name: PropTypes.string,
+  sortData: PropTypes.func.isRequired,
 };
 
 CryptoTable.defaultProps = {

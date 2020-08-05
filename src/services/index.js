@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const poloniexURL = 'https://poloniex.com/public?command=returnTicker';
+const thickerURL = 'https://poloniex.com/public?command=returnTicker';
+const currenciesURL = 'https://poloniex.com/public?command=returnCurrencies';
 
-const fetchCryptoData = async () => (axios.get(poloniexURL));
+export const fetchCryptoData = async () => (axios.get(thickerURL));
 
-export default fetchCryptoData;
+export const fetchCurrencies = async () => (axios.get(currenciesURL));

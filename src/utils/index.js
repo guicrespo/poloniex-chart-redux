@@ -7,7 +7,7 @@ export const formatTableHead = (key) => {
     case 'baseVolume': return 'Volume (24h)';
     case 'high24hr': return 'Maior preço (24h)';
     case 'low24hr': return 'Menor preço (24h)';
-    default: return undefined;
+    default: return key;
   }
 };
 
@@ -21,6 +21,13 @@ export const formatTableBody = (key, value) => {
     case 'baseVolume': return `${Number(value).toLocaleString('pt-BR', currencyFormat).substring(1)}`;
     case 'high24hr': return `${Number(value).toLocaleString('pt-BR', currencyFormat).substring(1)}`;
     case 'low24hr': return `${Number(value).toLocaleString('pt-BR', currencyFormat).substring(1)}`;
-    default: return undefined;
+    default: return value;
+  }
+};
+
+export const formatCoinName = (coin) => {
+  switch (coin) {
+    case 'btc': return 'Bitcoin (BTC)';
+    default: return coin;
   }
 };
