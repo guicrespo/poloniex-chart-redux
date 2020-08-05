@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { formatCoinName } from '../utils';
 import { getTradeHistory, getCryptoDataFromAPI } from '../actions';
 import '../styles/coinDetails.css';
+import LoanOrders from '../components/LoanOrders';
 
 class CoinDetails extends Component {
   constructor(props) {
@@ -33,6 +34,8 @@ class CoinDetails extends Component {
     return (
       <section>
         <h2>{formatCoinName(coin)}</h2>
+        <h3>Ordens de empréstimo</h3>
+        <LoanOrders />
         <h3>Histórico de Negociações</h3>
         <section className="selector-tradre-history">
           <span className="selector-label">
