@@ -5,6 +5,7 @@ import {
   FILTER_BY_NAME,
   SORT_TABLE,
   RECEIVE_TRADE_HISTORY,
+  RECEIVE_LOAN_ORDERS,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -17,6 +18,7 @@ const INITIAL_STATE = {
     order: 'DESC',
   },
   tradeHistory: [],
+  loanOrders: {},
   error: '',
 };
 
@@ -42,6 +44,8 @@ const cryptoData = (state = INITIAL_STATE, action) => {
       };
     case RECEIVE_TRADE_HISTORY:
       return { ...state, isFetching: false, tradeHistory: action.data };
+    case RECEIVE_LOAN_ORDERS:
+      return { ...state, isFetching: false, loanOrders: action.data };
     default: return state;
   }
 };

@@ -1,10 +1,11 @@
-import { fetchCryptoData, fetchTradeHistory } from '../services';
+import { fetchCryptoData, fetchTradeHistory, fetchLoanOrders } from '../services';
 
 export const REQUEST_POLONIEX_API = 'REQUEST_POLONIEX_API';
 export const RECEIVE_POLONIEX_API_SUCCESS = 'RECEIVE_POLONIEX_API_SUCCESS';
 export const RECEIVE_POLONIEX_API_FAILURE = 'RECEIVE_POLONIEX_API_FAILURE';
 export const FILTER_BY_NAME = 'FILTER_BY_NAME';
 export const SORT_TABLE = 'SORT_TABLE';
+export const RECEIVE_LOAN_ORDERS = 'RECEIVE_LOAN_ORDERS';
 export const RECEIVE_TRADE_HISTORY = 'RECEIVE_TRADE_HISTORY';
 
 const requestPoloniexAPI = () => ({
@@ -19,6 +20,11 @@ const receivePoloniexAPISuccess = (data) => ({
 const receivePoloniexAPIFailure = (error) => ({
   type: RECEIVE_POLONIEX_API_FAILURE,
   error,
+});
+
+const receiveLoanOrdersAPISuccess = (data) => ({
+  type: RECEIVE_LOAN_ORDERS,
+  data,
 });
 
 const receiveHistoryTradeSuccess = (data) => ({
@@ -73,8 +79,16 @@ export const sortContent = (data, field, order) => {
   };
 };
 
+export const getLoanOrders = (coin) => async (dispatch) => {
+  // dispatch(requestPoloniexAPI());
+
+  return fetchLoanOrders(coin)
+    .then(({ data }) => dispatch(receiveLoanOrdersAPISuccess(data)))
+    .catch((error) => dispatch(receivePoloniexAPIFailure(error)));
+};
+
 export const getTradeHistory = (coinPair) => async (dispatch) => {
-  dispatch(requestPoloniexAPI);
+  dispatch(requestPoloniexAPI());
 
   return fetchTradeHistory(coinPair)
     .then(({ data }) => dispatch(receiveHistoryTradeSuccess(data)))
