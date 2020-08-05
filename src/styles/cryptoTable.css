@@ -15,8 +15,8 @@ th {
 td , th {
   background-color: white;
   border-bottom: 1px solid #e5e5e5;
-  max-width: 10rem;
-  min-width: 10rem;
+  max-width: 9rem;
+  min-width: 9rem;
   overflow: hidden;
   padding: 1rem;
   text-align: center;
@@ -25,6 +25,18 @@ td , th {
 thead th {
   background-color: rgb(0, 61, 131);
   color: white;
+}
+
+th button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+th:hover , th:active {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 thead th:first-child {
@@ -57,6 +69,7 @@ table td:first-child , table th:first-child {
 
 .table-buttons {
   display: flex;
+  margin-top: 1rem;
 }
 
 .table-button {
@@ -64,7 +77,7 @@ table td:first-child , table th:first-child {
   border: none;
   color: rgb(0, 61, 131);
   cursor: pointer;
-  font-size: xx-large;
+  font-size: 1.5rem;
   height: fit-content;
   margin: 1rem;
 }
@@ -87,7 +100,7 @@ table {
 
 .page-number {
   font-size: large;
-  margin-top: 1.5rem;
+  margin-top: 1.3rem;
 }
 
 .table-head-row {

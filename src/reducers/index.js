@@ -3,13 +3,20 @@ import {
   RECEIVE_POLONIEX_API_SUCCESS,
   RECEIVE_POLONIEX_API_FAILURE,
   FILTER_BY_NAME,
+  SORT_TABLE,
+  RECEIVE_TRADE_HISTORY,
 } from '../actions';
 
 const INITIAL_STATE = {
   isFetching: false,
   data: {},
   filteredData: {},
-  filters: { name: '' },
+  filters: {
+    name: '',
+    field: 'last',
+    order: 'DESC',
+  },
+  tradeHistory: [],
   error: '',
 };
 
@@ -27,6 +34,14 @@ const cryptoData = (state = INITIAL_STATE, action) => {
         filteredData: action.filteredData,
         filters: { ...state.filters, name: action.name },
       };
+    case SORT_TABLE:
+      return {
+        ...state,
+        filteredData: action.data,
+        filters: { ...state.filters, field: action.field },
+      };
+    case RECEIVE_TRADE_HISTORY:
+      return { ...state, isFetching: false, tradeHistory: action.data };
     default: return state;
   }
 };
