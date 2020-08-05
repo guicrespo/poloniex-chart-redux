@@ -109,17 +109,20 @@ class CryptoTable extends Component {
     const { page } = this.state;
     return (
       <tbody>
-        {Object.entries(data).slice(page, page + 10).map(([key, value]) => (
-          <tr>
-            <td key={key}>
-              <Link to={`/${key.toLowerCase()}`}>{key}</Link>
-            </td>
-            {Object.entries(value).map(([elKey, elValue]) => (
-              !['id', 'isFrozen', 'quoteVolume'].includes(elKey)
-              && <td>{formatTableBody(elKey, elValue)}</td>
-            ))}
-          </tr>
-        ))}
+        {Object.entries(data)
+          .filter(([key, _value]) => key.startsWith('USDT'))
+          .slice(page, page + 10)
+          .map(([key, value]) => (
+            <tr>
+              <td key={key}>
+                <Link to={`/${key.substring(5).toLowerCase()}`}>{key.substring(5)}</Link>
+              </td>
+              {Object.entries(value).map(([elKey, elValue]) => (
+                !['id', 'isFrozen', 'quoteVolume'].includes(elKey)
+                && <td>{formatTableBody(elKey, elValue)}</td>
+              ))}
+            </tr>
+          ))}
       </tbody>
     );
   }
@@ -141,7 +144,7 @@ class CryptoTable extends Component {
           type="button"
           onClick={this.handleNextPage}
           className="table-button"
-          disabled={page >= Object.values(cryptoData).length - 10}
+          disabled={page >= Object.keys(cryptoData).filter((key) => key.startsWith('USDT')).length - 10}
         >
           ❯
         </button>

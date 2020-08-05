@@ -27,7 +27,7 @@ export const formatTableBody = (key, value) => {
 
 export const formatCoinName = (coin) => {
   switch (coin) {
-    case 'btc': return 'Bitcoin (BTC)';
+    case 'BTC': return 'Bitcoin (BTC)';
     default: return coin;
   }
 };

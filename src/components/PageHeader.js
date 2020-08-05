@@ -11,7 +11,7 @@ const PageHeader = () => (
     <a href="/" className="header-link">
       <h1 className="header-title">
         Crypto
-        <span style={{ color: '#004AA0' }}>Table</span>
+        <span style={{ color: '#004AA0' }}>INFO</span>
       </h1>
     </a>
   </header>

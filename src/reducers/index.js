@@ -4,7 +4,7 @@ import {
   RECEIVE_POLONIEX_API_FAILURE,
   FILTER_BY_NAME,
   SORT_TABLE,
-  RECEIVE_CURRENCIES,
+  RECEIVE_TRADE_HISTORY,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -16,7 +16,7 @@ const INITIAL_STATE = {
     field: 'last',
     order: 'DESC',
   },
-  currencies: [],
+  tradeHistory: [],
   error: '',
 };
 
@@ -40,8 +40,8 @@ const cryptoData = (state = INITIAL_STATE, action) => {
         filteredData: action.data,
         filters: { ...state.filters, field: action.field },
       };
-    case RECEIVE_CURRENCIES:
-      return { ...state, currencies: action.data };
+    case RECEIVE_TRADE_HISTORY:
+      return { ...state, isFetching: false, tradeHistory: action.data };
     default: return state;
   }
 };
