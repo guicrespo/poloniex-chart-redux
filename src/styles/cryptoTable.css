@@ -12,11 +12,6 @@ th {
   white-space: wrap;
 }
 
-th:hover , th:active {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 td , th {
   background-color: white;
   border-bottom: 1px solid #e5e5e5;
@@ -38,6 +33,11 @@ thead th:first-child {
 
 thead th:last-child {
   border-radius: 0 1rem 0 0;
+}
+
+th:hover , th:active {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 tbody tr a {

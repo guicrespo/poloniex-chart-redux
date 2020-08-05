@@ -29,19 +29,21 @@ class CoinDetails extends Component {
     if (isFetching) return <div className="spinner" data-testid="loading" />;
 
     if (error) return <p>Erro na conexão com a API. Verifique sua conexão.</p>;
+
     return (
       <section>
         <h2>{formatCoinName(coin)}</h2>
         <h3>Histórico de Negociações</h3>
         <section className="selector-tradre-history">
-          <span className="selector-label">Selecione uma criptomoeda para ver o histórico de negociações entre as duas:</span>
+          <span className="selector-label">
+            Selecione uma criptomoeda para ver o histórico de negociações entre as duas:
+          </span>
           <select
             name="coin"
             onChange={({ target: { value } }) => this.setState({ coinPair: `${value}` })}
           >
             <option value="" label="Selecionar" />
-            {Object.keys(data)
-              .filter((el) => el.startsWith('BTC_'))
+            {Object.keys(data).filter((el) => el.startsWith(`${coin}_`))
               .map((key) => <option value={key} key={key}>{key.replace(`${coin}_`, '')}</option>)}
           </select>
           <button
@@ -52,11 +54,9 @@ class CoinDetails extends Component {
           >
             Exibir
           </button>
-          {tradeHistory
-            .slice(0, 5)
-            .map((el, i) => (
-              <pre key={el.tradeID}>{`${i + 1}. ${JSON.stringify(el, null, 4)}`}</pre>
-            ))}
+          {tradeHistory.slice(0, 5).map((el, i) => (
+            <pre key={el.tradeID}>{`${i + 1}. ${JSON.stringify(el, null, 4)}`}</pre>
+          ))}
         </section>
       </section>
     );
