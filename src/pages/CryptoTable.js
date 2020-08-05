@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { getCryptoDataFromAPI } from '../actions';
 import '../styles/cryptoTable.css';
 import SearchInput from '../components/SearchInput';
+import { formatTableHead, formatTableBody } from '../utils';
 
 class CryptoTable extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class CryptoTable extends Component {
       page: 0,
       pageNumber: 1,
       previousButtonEnabled: false,
-      nextButtonEnabled: true,
     };
 
     this.handleNextPage = this.handleNextPage.bind(this);
@@ -29,8 +29,8 @@ class CryptoTable extends Component {
           {
             Object.values(data).map((value) => (
               Object.keys(value).map((key) => (
-                !['id', 'isFrozen'].includes(key)
-                && <th key={key} className="table-head-cell">{key}</th>
+                !['id', 'isFrozen', 'quoteVolume'].includes(key)
+                && <th key={key} className="table-head-cell">{formatTableHead(key)}</th>
               ))
             ))[0]
           }
@@ -42,7 +42,7 @@ class CryptoTable extends Component {
   static renderTableCaption() {
     return (
       <p className="table-caption">
-        Os valores exibidos estão em USDT
+        Os preços exibidos estão em USDT
         <span
           className="table-caption tooltip tooltip-top"
           data-tooltip="USDT é sigla do USDT Tether, um token digital estável e atrelado
@@ -60,21 +60,24 @@ class CryptoTable extends Component {
     fetchCryptoData();
   }
 
+  shouldComponentUpdate(nextProps) {
+    const { name } = this.props;
+    if (name !== nextProps.name) {
+      this.setState({ page: 0, pageNumber: 1, previousButtonEnabled: false });
+    }
+    return true;
+  }
+
   handlePreviousPage() {
     const { pageNumber, page } = this.state;
     this.setState({ pageNumber: pageNumber - 1, page: page - 10 });
     if (pageNumber <= 2) {
       this.setState({ previousButtonEnabled: false });
     }
-    this.setState({ nextButtonEnabled: true });
   }
 
   handleNextPage() {
-    const { data } = this.props;
     const { pageNumber, page } = this.state;
-    if (page >= Object.values(data).length - 10) {
-      return this.setState({ nextButtonEnabled: false });
-    }
     return this.setState({
       previousButtonEnabled: true,
       pageNumber: pageNumber + 1,
@@ -92,8 +95,8 @@ class CryptoTable extends Component {
               <Link to={`/${key.toLowerCase()}`}>{key}</Link>
             </td>
             {Object.entries(value).map(([elKey, elValue]) => (
-              !['id', 'isFrozen'].includes(elKey)
-              && <td>{elValue}</td>
+              !['id', 'isFrozen', 'quoteVolume'].includes(elKey)
+              && <td>{formatTableBody(elKey, elValue)}</td>
             ))}
           </tr>
         ))}
@@ -101,8 +104,8 @@ class CryptoTable extends Component {
     );
   }
 
-  renderPageButtons() {
-    const { pageNumber, previousButtonEnabled, nextButtonEnabled } = this.state;
+  renderPageButtons(cryptoData) {
+    const { page, pageNumber, previousButtonEnabled } = this.state;
     return (
       <section className="table-buttons">
         <button
@@ -118,7 +121,7 @@ class CryptoTable extends Component {
           type="button"
           onClick={this.handleNextPage}
           className="table-button"
-          disabled={!nextButtonEnabled}
+          disabled={page >= Object.values(cryptoData).length - 10}
         >
           ❯
         </button>
@@ -145,15 +148,15 @@ class CryptoTable extends Component {
               {this.renderTableBody(cryptoData)}
             </table>
           )}
-        {this.renderPageButtons()}
+        {this.renderPageButtons(cryptoData)}
       </section>
 
     );
   }
 }
 
-const mapStateToProps = ({ data, filteredData, isFetching, error }) => (
-  { data, filteredData, isFetching, error }
+const mapStateToProps = ({ data, filteredData, isFetching, filters: { name }, error }) => (
+  { data, filteredData, isFetching, name, error }
 );
 
 const mapDispatchToProps = (dispatch) => (
@@ -166,10 +169,12 @@ CryptoTable.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   fetchCryptoData: PropTypes.func.isRequired,
   error: PropTypes.string,
+  name: PropTypes.string,
 };
 
 CryptoTable.defaultProps = {
   error: '',
+  name: '',
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CryptoTable);

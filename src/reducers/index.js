@@ -5,7 +5,13 @@ import {
   FILTER_BY_NAME,
 } from '../actions';
 
-const INITIAL_STATE = { isFetching: false, data: {}, filteredData: {}, error: '' };
+const INITIAL_STATE = {
+  isFetching: false,
+  data: {},
+  filteredData: {},
+  filters: { name: '' },
+  error: '',
+};
 
 const cryptoData = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -16,7 +22,11 @@ const cryptoData = (state = INITIAL_STATE, action) => {
     case RECEIVE_POLONIEX_API_FAILURE:
       return { ...state, isFetching: false, error: action.error.toString() };
     case FILTER_BY_NAME:
-      return { ...state, filteredData: action.filteredData };
+      return {
+        ...state,
+        filteredData: action.filteredData,
+        filters: { ...state.filters, name: action.name },
+      };
     default: return state;
   }
 };

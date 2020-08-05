@@ -30,6 +30,7 @@ export const getCryptoDataFromAPI = () => async (dispatch) => {
           acc[cur[0].substring(5)] = cur[1];
           return acc;
         }, []);
+
       dispatch(receivePoloniexAPISuccess(filteredDataUSDT));
     })
     .catch((error) => dispatch(receivePoloniexAPIFailure(error)));
@@ -45,5 +46,6 @@ export const filterByName = (data, name) => {
   return {
     type: FILTER_BY_NAME,
     filteredData,
+    name,
   };
 };
