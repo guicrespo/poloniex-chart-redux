@@ -89,15 +89,16 @@ class CryptoTable extends Component {
               Object.keys(value).map((key) => (
                 !['id', 'isFrozen', 'quoteVolume'].includes(key)
                 && (
-                  <button type="button" style={{ border: 'none', background: 'none' }}>
-                    <th
-                      key={key}
-                      className="table-head-cell"
+
+                  <th key={key} className="table-head-cell">
+                    <button
+                      type="button"
                       onClick={() => this.setState({ field: key, order: order === 'ASC' ? 'DESC' : 'ASC' })}
                     >
                       {`${formatTableHead(key)} ${key === field ? indicator : ''}`}
-                    </th>
-                  </button>
+                    </button>
+                  </th>
+
                 )
               ))
             ))[0]

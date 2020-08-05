@@ -27,17 +27,24 @@ thead th {
   color: white;
 }
 
+th button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+th:hover , th:active {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 thead th:first-child {
   border-radius: 1rem 0 0;
 }
 
 thead th:last-child {
   border-radius: 0 1rem 0 0;
-}
-
-th:hover , th:active {
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 tbody tr a {
