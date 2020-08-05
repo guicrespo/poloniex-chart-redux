@@ -23,9 +23,10 @@ class LoanOrders extends Component {
 
   render() {
     const { loanOrders, isFetching } = this.props;
-    console.log(loanOrders)
 
-    if (isFetching || !Object.getOwnPropertyNames(loanOrders).length) return <div className="spinner" data-testid="loading" />;
+    if (isFetching || !Object.getOwnPropertyNames(loanOrders).length) {
+      return <div className="spinner" data-testid="loading" />;
+    }
 
     const offersAvgAmount = loanOrders.offers
       .reduce((acc, cur, _i, arr) => (acc + Number(cur.amount)) / arr.length, 0);
@@ -35,7 +36,7 @@ class LoanOrders extends Component {
     return (
       <section>
         <ul>
-          Ofertas:
+          Oferta:
           <li>
             Taxa de juros média (por dia):&nbsp;
             {offersAvgRate}

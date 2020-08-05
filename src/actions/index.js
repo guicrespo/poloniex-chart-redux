@@ -79,13 +79,11 @@ export const sortContent = (data, field, order) => {
   };
 };
 
-export const getLoanOrders = (coin) => async (dispatch) => {
-  // dispatch(requestPoloniexAPI());
-
-  return fetchLoanOrders(coin)
+export const getLoanOrders = (coin) => async (dispatch) => (
+  fetchLoanOrders(coin)
     .then(({ data }) => dispatch(receiveLoanOrdersAPISuccess(data)))
-    .catch((error) => dispatch(receivePoloniexAPIFailure(error)));
-};
+    .catch((error) => dispatch(receivePoloniexAPIFailure(error)))
+);
 
 export const getTradeHistory = (coinPair) => async (dispatch) => {
   dispatch(requestPoloniexAPI());

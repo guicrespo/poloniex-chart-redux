@@ -8,4 +8,4 @@ export const fetchCryptoData = async () => (axios.get(thickerURL));
 
 export const fetchTradeHistory = async (coinPair) => (axios.get(`${tradeHistoryURL}${coinPair}`));
 
-export const fetchLoanOrders = async (coin) => (axios.get(`${loanOrdersURL}${coin}`))
+export const fetchLoanOrders = async (coin) => (axios.get(`${loanOrdersURL}${coin}`));
