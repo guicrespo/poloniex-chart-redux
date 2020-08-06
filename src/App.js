@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <PageHeader />
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={CryptoTable} />
           <Route path="/:coin" component={CoinDetails} />
