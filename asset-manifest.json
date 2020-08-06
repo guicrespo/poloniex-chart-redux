@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/poloniex-chart-redux/static/css/main.82d294f0.chunk.css",
-    "main.js": "/poloniex-chart-redux/static/js/main.8de987a9.chunk.js",
-    "main.js.map": "/poloniex-chart-redux/static/js/main.8de987a9.chunk.js.map",
+    "main.js": "/poloniex-chart-redux/static/js/main.4157e67e.chunk.js",
+    "main.js.map": "/poloniex-chart-redux/static/js/main.4157e67e.chunk.js.map",
     "runtime-main.js": "/poloniex-chart-redux/static/js/runtime-main.a8ef594d.js",
     "runtime-main.js.map": "/poloniex-chart-redux/static/js/runtime-main.a8ef594d.js.map",
     "static/js/2.2fb48375.chunk.js": "/poloniex-chart-redux/static/js/2.2fb48375.chunk.js",
     "static/js/2.2fb48375.chunk.js.map": "/poloniex-chart-redux/static/js/2.2fb48375.chunk.js.map",
     "index.html": "/poloniex-chart-redux/index.html",
-    "precache-manifest.7c604f33c0acbecca20998eeda7bda30.js": "/poloniex-chart-redux/precache-manifest.7c604f33c0acbecca20998eeda7bda30.js",
+    "precache-manifest.7ef07b05d2cc65e4588fca14f247a51a.js": "/poloniex-chart-redux/precache-manifest.7ef07b05d2cc65e4588fca14f247a51a.js",
     "service-worker.js": "/poloniex-chart-redux/service-worker.js",
     "static/css/main.82d294f0.chunk.css.map": "/poloniex-chart-redux/static/css/main.82d294f0.chunk.css.map",
     "static/js/2.2fb48375.chunk.js.LICENSE.txt": "/poloniex-chart-redux/static/js/2.2fb48375.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.a8ef594d.js",
     "static/js/2.2fb48375.chunk.js",
     "static/css/main.82d294f0.chunk.css",
-    "static/js/main.8de987a9.chunk.js"
+    "static/js/main.4157e67e.chunk.js"
   ]
 }
