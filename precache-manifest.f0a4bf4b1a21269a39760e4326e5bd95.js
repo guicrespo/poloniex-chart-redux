@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7a3f1dcd4c93efbab25433c2b58fca03",
+    "revision": "e7fd00eeef3c866dfcb033acbc34cad8",
     "url": "/poloniex-chart-redux/index.html"
   },
   {
-    "revision": "5827c1d848b6a935ff9d",
+    "revision": "20a61ce54edb89615851",
     "url": "/poloniex-chart-redux/static/css/main.82d294f0.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/poloniex-chart-redux/static/js/2.2fb48375.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5827c1d848b6a935ff9d",
-    "url": "/poloniex-chart-redux/static/js/main.e1a81938.chunk.js"
+    "revision": "20a61ce54edb89615851",
+    "url": "/poloniex-chart-redux/static/js/main.a1f35d6d.chunk.js"
   },
   {
     "revision": "91eda6e0659ac7f4f5fd",

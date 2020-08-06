@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/poloniex-chart-redux/precache-manifest.524f872b1067f45f1440988ee15acbb0.js"
+  "/poloniex-chart-redux/precache-manifest.f0a4bf4b1a21269a39760e4326e5bd95.js"
 );
 
 self.addEventListener('message', (event) => {
