@@ -1,68 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Projeto site CryptoINFO
 
-## Available Scripts
+Projeto que teve como objetivo o desenvolvimento de uma aplicação WEB front-end, na qual o usuário ou usuária acessa um ranking de criptomoedas e pode ver detalhes de cada uma, de forma dinâmica e atualizada a partir do consumo da API disponibilizada pelo [Poloniex](https://docs.poloniex.com).
 
-In the project directory, you can run:
+## Tecnologias utilizadas
 
-### `npm start`
+A aplicação foi construída utilizando a biblioteca React para Javascript, em conjunto com Redux (thunk) para gerenciamento de estado e de funções assíncronas.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Funcionalidades
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Página Inicial
 
-### `npm test`
+A página inicial traz uma tabela com informações atualizadas sobre as criptomoedas retornadas pela API. Na primeira renderização, os dados são exibidos segundo a última maior cotação de cada criptomoeda.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Os valores monetários são exibidos em USDT. Esta informação está numa legenda acima da tabela, que abre um pequeno "pop-up" explicando o significado da sigla.
 
-### `npm run build`
+A tabela é paginada, exibindo 10 resultados por página. Os botões de 'voltar' e 'avançar' só ficam habilitados caso haja uma página anterior ou posterior, respectivamente.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Há um campo dinâmico de busca por sigla da criptomoeda, que exibe instantaneamente, na tabela, o resultado da busca enquanto se digita.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Todos campos/atributos de cada moeda são "clicáveis" e ordenam a lista em ordem crescente ou decrescente, conforme seta indicativa ao lado de cada campo selecionado.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Todos os nomes das criptomoedas são links para a página de detalhes daquela moeda específica.
 
-### `npm run eject`
+A tabela é responsiva e pode ser utilizada em dispositivos móveis, pois sua primeira coluna é fixa e o restante do corpo da tabela pode ser arrastado.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Página inicial da aplicação, mostrando todos os elementos descritos acima](/public/assets/app-home.png "Página inicial")
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Página de Detalhes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Em construção**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+A página de detalhes de cada criptomoeda tem duas fucionalidades previstas:  
+1) Exibição sobre as ofertas e demandas por empréstimo da criptomoeda selecionada;  
+2) Exibição do histórico de negociações entre a criptomoeda (carregada na página) e outra selecionada pelo usuário ou usuária para formar o par.
 
-## Learn More
+A visualização dos dados dssa página ainda está em construção, mas funciona bem com moedas que têm muitas informações (como, por exemplo, o Bitcoin). Entretanto, ainda é necessário melhorar as formas de visualização e, talvez, adicionar outros dados.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Página de detalhes das criptomoedas, mostrando todos os elementos descritos acima](/public/assets/app-details.png "Página de Detalhes")
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Pontos de melhoria
 
-### Code Splitting
+Pontos de melhoria:
+- Outras ferramentas de filtro na página inicial;
+- Página de detalhes reformulada com mais informações e de forma mais ilustrativa;
+- Refatoração do código para simplificação de algumas lógicas e componentização de algumas partes das classes;
+- Construção de mais testes unitários - apesar de ter alguns testes, este trabalho foi apenas iniciado, e é necessária uma cobertura maior;
+- Mais estudo sobre os termos utilizados e também quanto ao funcionamento do mercado de criptomoedas, para exibição de informações mais assertivas e relevantes.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Esse é meu projeto até agora, agradeço por ter lido até aqui :)
