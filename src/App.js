@@ -10,10 +10,10 @@ function App() {
   return (
     <div>
       <PageHeader />
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={CryptoTable} />
-          <Route path="/:coin" component={CoinDetails} />
+          <Route exact path="/poloniex-chart-redux" component={CryptoTable} />
+          <Route path="/poloniex-chart-redux/:coin" component={CoinDetails} />
         </Switch>
       </BrowserRouter>
       <Footer />
