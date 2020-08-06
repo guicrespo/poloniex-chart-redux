@@ -57,6 +57,7 @@ class CoinDetails extends Component {
           >
             Exibir
           </button>
+          <p>{coinPair.replace('_', ' to ')}</p>
           {tradeHistory.slice(0, 5).map((el, i) => (
             <pre key={el.tradeID}>{`${i + 1}. ${JSON.stringify(el, null, 4)}`}</pre>
           ))}
