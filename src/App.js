@@ -14,6 +14,7 @@ function App() {
         <Switch>
           <Route exact path="/poloniex-chart-redux" component={CryptoTable} />
           <Route path="/poloniex-chart-redux/:coin" component={CoinDetails} />
+          <Route path="/:coin" component={CoinDetails} />
         </Switch>
       </BrowserRouter>
       <Footer />
