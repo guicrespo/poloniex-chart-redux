@@ -18,7 +18,7 @@ class LoanOrders extends Component {
   componentDidMount() {
     const { coin } = this.state;
     const { getCoinLoanOrders } = this.props;
-    setTimeout(getCoinLoanOrders(coin), 10000);
+    getCoinLoanOrders(coin);
   }
 
   render() {
