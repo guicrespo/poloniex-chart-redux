@@ -118,7 +118,7 @@ class CryptoTable extends Component {
           .map(([key, value]) => (
             <tr>
               <td key={key}>
-                <Link to={`/${key.substring(5).toLowerCase()}`}>{key.substring(5)}</Link>
+                <Link to={`/poloniex-chart-redux/${key.substring(5).toLowerCase()}`}>{key.substring(5)}</Link>
               </td>
               {Object.entries(value).map(([elKey, elValue]) => (
                 !['id', 'isFrozen', 'quoteVolume'].includes(elKey)
