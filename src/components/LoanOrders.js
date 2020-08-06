@@ -11,7 +11,7 @@ class LoanOrders extends Component {
     const { location: { pathname } } = this.props;
 
     this.state = {
-      coin: pathname.substring(1).toUpperCase(),
+      coin: pathname.slice(pathname.length - 3).toUpperCase(),
     };
   }
 
