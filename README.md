@@ -1,10 +1,10 @@
 # Projeto site CryptoINFO
 
-Projeto que teve como objetivo o desenvolvimento de uma aplicação WEB front-end, na qual o usuário ou usuária acessa um ranking de criptomoedas e pode ver detalhes de cada uma, de forma dinâmica e atualizada a partir do consumo da API disponibilizada pelo [Poloniex](https://docs.poloniex.com).
+Projeto que tem como objetivo o desenvolvimento de uma aplicação WEB front-end, na qual o usuário ou a usuária acessa um ranking de criptomoedas e pode ver detalhes de cada uma, de forma dinâmica e atualizada a partir do consumo da API disponibilizada pelo [Poloniex](https://docs.poloniex.com).
 
 ## Tecnologias utilizadas
 
-A aplicação foi construída utilizando a biblioteca React para Javascript, em conjunto com Redux (thunk) para gerenciamento de estado e de funções assíncronas.
+A aplicação está sendo construída utilizando a biblioteca React para Javascript, em conjunto com Redux para gerenciamento de estado e de funções assíncronas (redux-thunk).
 
 ## Funcionalidades
 
@@ -32,7 +32,7 @@ A tabela é responsiva e pode ser utilizada em dispositivos móveis, pois sua pr
 
 A página de detalhes de cada criptomoeda tem duas fucionalidades previstas:  
 1) Exibição sobre as ofertas e demandas por empréstimo da criptomoeda selecionada;  
-2) Exibição do histórico de negociações entre a criptomoeda (carregada na página) e outra selecionada pelo usuário ou usuária para formar o par.
+2) Exibição do histórico de negociações entre a criptomoeda (carregada na página) e outra selecionada pelo usuário ou pela usuária para formar o par.
 
 A visualização dos dados dssa página ainda está em construção, mas funciona bem com moedas que têm muitas informações (como, por exemplo, o Bitcoin). Entretanto, ainda é necessário melhorar as formas de visualização e, talvez, adicionar outros dados.
 
