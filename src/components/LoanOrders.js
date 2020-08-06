@@ -18,15 +18,17 @@ class LoanOrders extends Component {
   componentDidMount() {
     const { coin } = this.state;
     const { getCoinLoanOrders } = this.props;
-    getCoinLoanOrders(coin);
+    setTimeout(getCoinLoanOrders(coin), 10000);
   }
 
   render() {
-    const { loanOrders, isFetching } = this.props;
+    const { loanOrders, isFetching, error } = this.props;
 
-    if (isFetching || !Object.getOwnPropertyNames(loanOrders).length) {
+    if (isFetching || !loanOrders.offers) {
       return <div className="spinner" data-testid="loading" />;
     }
+
+    if (error) return <p>Erro na conexão com a API. Verifique sua conexão.</p>;
 
     const offersAvgAmount = loanOrders.offers
       .reduce((acc, cur, _i, arr) => (acc + Number(cur.amount)) / arr.length, 0);
@@ -65,6 +67,11 @@ LoanOrders.propTypes = {
   getCoinLoanOrders: PropTypes.func.isRequired,
   loanOrders: PropTypes.instanceOf(Object).isRequired,
   isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.string,
+};
+
+LoanOrders.defaultProps = {
+  error: '',
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoanOrders));
