@@ -8,7 +8,7 @@ const PageHeader = () => (
       className="coin-icon"
       alt="ícone com três moedas sem preenchimento empilhadas"
     />
-    <a href="/" className="header-link">
+    <a href="/poloniex-chart-redux" className="header-link">
       <h1 className="header-title">
         Crypto
         <span style={{ color: '#004AA0' }}>INFO</span>
